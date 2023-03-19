@@ -1,0 +1,55 @@
+Završni projekat
+I deo - Dokumentacija
+
+Realizaciju aplikacije opisati preko dokumentacije u okviru template koji je okačen na Moodle-u. Dokumentacija treba da sadrži:
+
+-Jasno specificiran i formulisan korisnički zahtev.
+
+Opis sistema koji obuhvata:
+-Opis slučajeva korišćenja (za nekoliko karakterističnih slučajeva)
+-Opis arhitekture aplikacije - osnovni segmenti i komponente aplikacije, način na koji komponente komuniciraju. Povezivanje aplikacije i baze
+-Model podataka - PMOV, struktura baze
+-Detaljna specifikacija REST API-ja – za svaku funkciju sopstvenog web servisa treba napraviti detaljnu dokumentaciju. Može se napraviti dokumentacija uz korišćenje uzora dokumentacija različitih javnih REST servisa (https://nordicapis.com/5-examples-of-excellent-api-documentation/,  https://developer.twitter.com/en/docs/api-reference-index, http://developer.wordpress.com/docs/api/, http://www.twilio.com/docs/api/rest i sl.). Dokumetacija REST API-ja bi trebalo da sadrži:
+-Naziv funkcije
+-Opis funkcije
+-Endpoint do funkcije (URL za pristup ovoj funkciji)
+-Metoda koja se koristi za slanje podataka (GET, POST, PUT, DELETE)
+-HTTP zaglavlja koja je potrebno poslati i vrednosti ovih zaglavlja sa opisima
+-Parametri koje je potrebno poslati i u kom formatu
+-Izlaz i format izlaza koji se dobija kao rezultat funkcije
+-Korisničko uputstvo - Opis karakterističnih slučajeva korišćenja preko screenshot-ova aplikacije
+-Prikaz reprezentativnih delova koda
+-GitHub link ka repozitorijumu
+
+II deo - Implementacija
+
+Web aplikaciju je potrebno implementirati korišćenjem Laravela. Implementacija web aplikacije obuhvata sledeće zahteve:
+
+Minimalni zahtevi aplikacije koje je neophodno ispuniti su:
+
+x-Postojanje baze i osnovnih operacija nad istom (select, insert, update, delete)
+x-Migracije nad bazom podataka (najmanje 3 migracije)
+-Poziv najmanje jednog javnog web servisa.
+-Kreiranje najmanje četiri funkcije sopstvenog web servisa
+-Bar dve korisničke uloge nad sistemom (npr. administrator, običan korisnik)
+-Obezbediti upravljanje sesijom (login, logout)
+-Bar dve dodatne jednostavnije funkcionalnosti (pretraga, sortiranje, upravljanje greškama i sl.)
+-Verzionisanje koda
+
+Za najveći broj poena neophodno je obezbediti:
+
+Minimalne zahteve
+Dobar i konzistentan dizajn
+Poštovanje osnovnih principa razvoja web aplikacija
+Razvoj aplikacije korišćenjem MVC paterna
+Različite funkcionalnosti za različite uloge korisnika u aplikaciji
+Bar jednu napredniju funkcionalnost (upravljanje uploadom fajlova, paginacija, kupovna korpa, obrada porudžbina, upravljanje mailovima, generisanje PDF fajlova, i sl.)
+Rad sa web servisima
+Sopstveni web servis (REST API) treba da bude kreiran da bez modifikacija bilo koji klijent može da koristi ovaj servis (npr. mobilni uređaji)
+Sopstveni REST web servis treba da sadrži najmanje 4 različite funkcije. Treba da se koriste različite metode (POST, GET, PUT, DELETE) za slanje zahteva. 
+Poziv najmanje tri sopstvena web servisa/api
+Poziv najmanje dva javna REST web servisa. Potrebno je da izbor javnih REST web servisa odgovara tematici sajta. Na primer, ukoliko je tema sajta Izrada elektronske prodavnice i izaberete web servis konvertor valute, za najveći broj poena nije dovoljno implementirati poziv konvertora valute u vidu forme sa poljima za unos iznosa i valute koja se konvertuje, već bi trebalo obezbediti prikaz combo box-a sa spiskom različitih valuta i prilikom izbora valute konvertovati cene svih proizvoda u aplikaciji.
+Obezbediti adekvatnu manipulaciju JSON-om
+III deo - Verzionisanje koda
+
+Projekat mora biti postavljen na GitHub repozitorijum sa smilenim porukama prilikom commitovanja.
