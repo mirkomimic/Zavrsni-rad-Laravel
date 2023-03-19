@@ -22,7 +22,7 @@ Route::get('/', function ()
 Route::get('/', [ItemController::class, 'index']);
 Route::post('/items', [ItemController::class, 'store']);
 Route::get('/items/{item}', [ItemController::class, 'show']);
-Route::get('/items/create/{id}', [ItemController::class, 'create']);
-Route::get('/items/edit/{id}', [ItemController::class, 'edit']);
-Route::put('/items/edit/{id}', [ItemController::class, 'update']);
-Route::delete('/items/{id}', [ItemController::class, 'destroy']);
+Route::get('/items/create/{item}', [ItemController::class, 'create']);
+Route::get('/items/edit/{item}', [ItemController::class, 'edit']);
+Route::put('/items/edit/{item}', [ItemController::class, 'update']);
+Route::delete('/items/{item}', [ItemController::class, 'destroy']);
