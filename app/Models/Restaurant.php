@@ -13,6 +13,8 @@ class Restaurant extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $guard = 'restaurant';
+
     protected $fillable = [
         'name',
         'email',
@@ -21,6 +23,7 @@ class Restaurant extends Authenticatable
 
     protected $hidden = [
         'password',
+        'remember_token'
     ];
 
     public function items()

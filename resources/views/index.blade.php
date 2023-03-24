@@ -1,3 +1,1 @@
-@foreach($items as $item)
-<p>{{$item->name}}</p>
-@endforeach
+<h1>home</h1>
