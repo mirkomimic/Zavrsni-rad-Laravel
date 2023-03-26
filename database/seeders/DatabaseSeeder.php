@@ -8,6 +8,7 @@ use App\Models\Item;
 use App\Models\Restaurant;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,13 +35,22 @@ class DatabaseSeeder extends Seeder
         //     'price' => 450,
         //     'restaurant_id' => $restaurant->id
         // ]);
-        // User::create([
-        //     'first_name' => 'Mirko',
-        //     'last_name' => 'Mimic',
-        //     'address' => 'address1',
-        //     'email' => 'mirko@gmail.com',
-        //     'password' => 'mirko123'
-        // ]);
+        User::create([
+            'first_name' => 'admin',
+            'last_name' => 'admin',
+            'address' => 'admin',
+            'email' => 'admin@gmail.com',
+            'password' => Hash::make('admin123'),
+            'is_admin' => true
+        ]);
+        User::create([
+            'first_name' => 'Pera',
+            'last_name' => 'Peric',
+            'address' => 'address 333',
+            'email' => 'pera@gmail.com',
+            'password' => Hash::make('pera123'),
+            'is_admin' => false
+        ]);
 
         User::factory()->count(10)->create();
         Restaurant::factory()->count(10)->create();

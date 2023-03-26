@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Services\ItemService;
 use App\Http\Requests\ItemRequest;
+use App\Http\Resources\ItemCollection;
 use App\Http\Resources\ItemResource;
 use App\Models\Item;
 use Illuminate\Http\Request;
@@ -60,6 +61,17 @@ class ItemController extends Controller
             'data' => new ItemResource($editedItem)
         ]);
     }
+
+    public function search(Request $request)
+    {
+        if ($request->price == 'desc')
+            $response = Item::orderBy('price', 'desc')->paginate(3);
+        elseif ($request->price == 'asc')
+            $response = Item::orderBy('price', 'asc')->paginate(3);
+
+        return ItemResource::collection($response);
+    }
+
 
     /**
      * Remove the specified resource from storage.

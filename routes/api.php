@@ -25,9 +25,14 @@ use Illuminate\Support\Facades\Route;
 // Login
 Route::post('/login', [AuthController::class, 'login']);
 //Logout
-Route::group(['middleware' => ['auth:sanctum']], function () {
+Route::group(['middleware' => ['auth:sanctum']], function ()
+{
     Route::post('/logout', [AuthController::class, 'logout']);
 });
+
+// Filters
+Route::get('/restaurants/search', [RestaurantController::class, 'search']);
+Route::get('/items/search', [ItemController::class, 'search']);
 
 // Users routes
 Route::get('/users', [UserController::class, 'index']);

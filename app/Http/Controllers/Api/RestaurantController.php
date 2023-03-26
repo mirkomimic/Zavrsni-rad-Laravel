@@ -8,6 +8,7 @@ use App\Http\Requests\RestaurantRequest;
 use App\Http\Resources\RestaurantResource;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RestaurantController extends Controller
 {
@@ -55,6 +56,16 @@ class RestaurantController extends Controller
         return response()->json([
             'success' => true,
             'data' => new RestaurantResource($restaurant)
+        ]);
+    }
+
+    public function search(Request $request)
+    {
+        // $restaurants = Restaurant::all();
+        $response = DB::table('restaurants')->where('name', 'Like', '%' . $request->search . '%')->get();
+
+        return response()->json([
+            'data' => RestaurantResource::collection($response),
         ]);
     }
 

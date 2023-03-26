@@ -18,9 +18,15 @@ class User extends Authenticatable
         'address',
         'email',
         'password',
+        'is_admin'
     ];
 
     protected $hidden = [
         'password',
+    ];
+
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+        'is_admin' => 'boolean'
     ];
 }

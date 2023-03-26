@@ -17,6 +17,7 @@ class UserServiceController extends Controller
         $user->address = $request->address;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->is_admin = $request->is_admin;
         $user->save();
     }
 }

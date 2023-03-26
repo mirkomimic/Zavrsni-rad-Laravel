@@ -27,14 +27,16 @@ class UserRequest extends FormRequest
                 'last_name' => ['required', 'string', 'max:255'],
                 'address' => ['required', 'string', 'max:255'],
                 'email' => ['required', 'email', 'unique:users'],
-                'password' => ['required']
+                'password' => ['required'],
+                'is_admin' => ['required']
             ];
         return [
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'unique:users'],
-            'password' => ['required']
+            'password' => ['required'],
+            'is_admin' => ['required']
         ];
     }
 }

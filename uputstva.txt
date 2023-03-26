@@ -30,11 +30,11 @@ Minimalni zahtevi aplikacije koje je neophodno ispuniti su:
 x-Postojanje baze i osnovnih operacija nad istom (select, insert, update, delete)
 x-Migracije nad bazom podataka (najmanje 3 migracije)
 -Poziv najmanje jednog javnog web servisa.
--Kreiranje najmanje četiri funkcije sopstvenog web servisa
--Bar dve korisničke uloge nad sistemom (npr. administrator, običan korisnik)
--Obezbediti upravljanje sesijom (login, logout)
+x-Kreiranje najmanje četiri funkcije sopstvenog web servisa
+x-Bar dve korisničke uloge nad sistemom (npr. administrator, običan korisnik)
+x-Obezbediti upravljanje sesijom (login, logout)
 -Bar dve dodatne jednostavnije funkcionalnosti (pretraga, sortiranje, upravljanje greškama i sl.)
--Verzionisanje koda
+x-Verzionisanje koda
 
 Za najveći broj poena neophodno je obezbediti:
 
