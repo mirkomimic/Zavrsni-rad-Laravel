@@ -12,7 +12,8 @@ class AuthController extends Controller
 {
     public function login(LoginRequest $request)
     {
-        if (!Auth::attempt($request->only('email', 'password'))) {
+        if (!Auth::attempt($request->only('email', 'password')))
+        {
             return response()->json([
                 'message' => 'Unauthorized'
             ], 401);
@@ -20,7 +21,10 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->firstOrFail();
 
-        $token = $user->createToken('auth_token')->plainTextToken;
+        if ($user->is_admin == true)
+            $token = $user->createToken('auth_token', ['admin'])->plainTextToken;
+        else
+            $token = $user->createToken('auth_token', ['user'])->plainTextToken;
 
         return response()->json([
             'message' => 'You are now logged',

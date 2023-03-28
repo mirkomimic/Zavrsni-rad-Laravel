@@ -24,22 +24,29 @@ use Illuminate\Support\Facades\Route;
 
 // Login
 Route::post('/login', [AuthController::class, 'login']);
-//Logout
-Route::group(['middleware' => ['auth:sanctum']], function ()
+// Register
+Route::post('/users', [UserController::class, 'store']);
+
+
+Route::group(['middleware' => 'auth:sanctum'], function ()
 {
+    // Logout
     Route::post('/logout', [AuthController::class, 'logout']);
+
+    Route::group(['middleware' => 'ability:admin'], function ()
+    {
+
+        Route::get('/users', [UserController::class, 'index']);
+        Route::get('/users/{user}', [UserController::class, 'show']);
+        Route::put('/users/{user}', [UserController::class, 'update']);
+        Route::delete('/users/{user}', [UserController::class, 'destroy']);
+    });
 });
 
 // Filters
 Route::get('/restaurants/search', [RestaurantController::class, 'search']);
 Route::get('/items/search', [ItemController::class, 'search']);
 
-// Users routes
-Route::get('/users', [UserController::class, 'index']);
-Route::post('/users', [UserController::class, 'store']);
-Route::get('/users/{user}', [UserController::class, 'show']);
-Route::put('/users/{user}', [UserController::class, 'update']);
-Route::delete('/users/{user}', [UserController::class, 'destroy']);
 
 // Restaurants routes
 Route::get('/restaurants', [RestaurantController::class, 'index']);
