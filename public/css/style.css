@@ -1,0 +1,83 @@
+#restaurants a:hover {
+  color: red;
+}
+.color-red {
+  color: red;
+}
+.myCard {
+  background-color: #1f2937f5;
+  border-radius: 1rem;
+  padding: 3rem;
+}
+#main {
+  display: grid;
+  grid-template-columns: 25% 1fr;
+  gap: 2rem;
+  min-height: 280px;
+  /* grid-template-columns: repeat(20%, 1fr); */
+}
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+table {
+  border-collapse: collapse;
+}
+table tr {
+  border-bottom: 1px solid black;
+}
+table tbody tr:hover {
+  background-color: rgba(108, 107, 107, 0.142);
+  cursor: pointer;
+}
+table tr th,
+td {
+  min-width: 7rem;
+  padding: 5px;
+  text-align: center;
+}
+table thead,
+tfoot {
+  background-color: #3a6f6fb5;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+#users_table_card {
+  min-height: 360px;
+}
+.selected_row {
+  background-color: rgba(255, 0, 0, 0.395) !important;
+}
+.w-100 {
+  width: 100px;
+}
+#main,
+#admin_main {
+  margin: 0 2.5rem;
+}
+
+.min-w-600 {
+  min-width: 600px;
+}
+.w-600 {
+  width: 600px;
+}
+
+/* @media only screen and (min-width: 1600px) {
+  #main,
+  #admin_main {
+    margin: 0 20%;
+  }
+} */
+@media only screen and (min-width: 1300px) {
+  #main,
+  #admin_main {
+    margin: 0 13%;
+  }
+}
+@media only screen and (max-width: 633px) {
+  #main,
+  #admin_main {
+    margin: 0;
+  }
+}

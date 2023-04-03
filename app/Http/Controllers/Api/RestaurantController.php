@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Services\RestaurantServiceController;
 use App\Http\Requests\RestaurantRequest;
+use App\Http\Resources\ItemResource;
 use App\Http\Resources\RestaurantResource;
 use App\Models\Restaurant;
 use Illuminate\Http\Request;
@@ -77,5 +78,10 @@ class RestaurantController extends Controller
         $restaurant->delete();
 
         return response()->json(['msg' => 'Restaurant deleted']);
+    }
+
+    public function items(Restaurant $restaurant)
+    {
+        return ItemResource::collection($restaurant->items);
     }
 }

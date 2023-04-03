@@ -43,7 +43,11 @@ return [
         'restaurant' => [
             'driver' => 'session',
             'provider' => 'restaurants'
-        ]
+        ],
+        'api' => [
+            'driver' => 'token',
+            'provider' => 'users',
+        ],
     ],
 
     /*

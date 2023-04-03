@@ -33,11 +33,12 @@ Route::group(['middleware' => 'auth:sanctum'], function ()
     // Logout
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    Route::group(['middleware' => 'ability:admin'], function ()
+    Route::group(['middleware' => ['ability:admin', 'is_admin']], function ()
     {
 
         Route::get('/users', [UserController::class, 'index']);
         Route::get('/users/{user}', [UserController::class, 'show']);
+        Route::patch('/users/{user}', [UserController::class, 'update']);
         Route::put('/users/{user}', [UserController::class, 'update']);
         Route::delete('/users/{user}', [UserController::class, 'destroy']);
     });
@@ -46,6 +47,8 @@ Route::group(['middleware' => 'auth:sanctum'], function ()
 // Filters
 Route::get('/restaurants/search', [RestaurantController::class, 'search']);
 Route::get('/items/search', [ItemController::class, 'search']);
+
+Route::get('restaurants/{restaurant}/items', [RestaurantController::class, 'items']);
 
 
 // Restaurants routes
