@@ -87,8 +87,6 @@ function getApiTemp() {
     type: "get",
 
     success: function (data) {
-      console.log(data);
-      console.log(data.current_weather.temperature);
       temp = data.current_weather.temperature;
       $("#temp").append("<p>Current temperature: " + temp + " &#x2103");
     },
@@ -100,7 +98,6 @@ function getUsers() {
     url: "http://127.0.0.1:8000/api/users",
     type: "get",
     success: function (data) {
-      console.log(data);
       for (user of data.data) {
         row = `
         <tr>
@@ -163,9 +160,10 @@ $(document).on("click", ".page-link", function (e) {
 $(document).on("click", "#users tbody tr", function () {
   $(this).addClass("selected_row").siblings().removeClass("selected_row");
   email = $(this).children().last().text();
-  console.log(email);
+  id = $(this).children().first().text();
 
   validateEmail(email);
+  getUser(id);
 });
 
 function validateEmail(email) {
@@ -173,7 +171,6 @@ function validateEmail(email) {
     url: "https://open.kickbox.com/v1/disposable/" + email,
     type: "get",
     success: function (data) {
-      console.log(data);
       text = `
         ${data.disposable}
       `;
@@ -181,3 +178,80 @@ function validateEmail(email) {
     },
   });
 }
+
+function getUser(id) {
+  $.ajax({
+    url: "http://127.0.0.1:8000/api/users/" + id,
+    type: "get",
+    success: function (data) {
+      $("#first_name_edit").val(data.data.first_name);
+      $("#last_name_edit").val(data.data.last_name);
+      $("#addressEdit").val(data.data.address);
+      $("#emailEdit").val(data.data.email);
+      $("#is_admin_edit").val(data.data.is_admin);
+    },
+  });
+}
+
+// submit edit form
+$(document).on("submit", "#edit_user_form", function (e) {
+  e.preventDefault();
+
+  var first_name = $("#first_name_edit").val();
+  var last_name = $("#last_name_edit").val();
+  var address = $("#addressEdit").val();
+  var email = $("#emailEdit").val();
+  var is_admin = $("#is_admin_edit").val();
+
+  id = $(".selected_row").children().first().text();
+  $.ajax({
+    headers: {
+      "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    },
+    url: "http://127.0.0.1:8000/api/users/" + id,
+    type: "patch",
+
+    data: {
+      first_name: first_name,
+      last_name: last_name,
+      address: address,
+      email: email,
+      is_admin: is_admin,
+    },
+    success: function (data) {
+      console.log(data);
+      $("#edit_user_msg").show().html("User edited");
+      $("#users tbody").empty();
+      $("#users_pagination").empty();
+      getUsers();
+    },
+  });
+  $("#edit_user_msg").hide().delay(3000).fadeOut(800);
+});
+
+// delete user
+$(document).on("click", "#delete_user", function (e) {
+  e.preventDefault();
+
+  id = $(".selected_row").children().first().text();
+
+  if (confirm("Are you sure?") == false) {
+    return;
+  }
+
+  $.ajax({
+    headers: {
+      "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    },
+    url: "http://127.0.0.1:8000/api/users/" + id,
+    type: "DELETE",
+    success: function (data) {
+      $("#edit_user_msg").show().html("User deleted");
+      $("#users tbody").empty();
+      $("#users_pagination").empty();
+      getUsers();
+      $("#edit_user_form")[0].reset();
+    },
+  });
+  $("#edit_user_msg").hide().delay(3000).fadeOut(800);
+});

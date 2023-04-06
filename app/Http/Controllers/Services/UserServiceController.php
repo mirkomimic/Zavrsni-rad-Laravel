@@ -12,7 +12,7 @@ class UserServiceController extends Controller
 {
     public function storeUser(UserRequest $request, User $user)
     {
-        $user->first_name = $request->first_name;
+        $user->first_name = $request->input('first_name');
         $user->last_name = $request->last_name;
         $user->address = $request->address;
         $user->email = $request->email;
